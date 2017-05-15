@@ -1,0 +1,1 @@
+This is a project to port some core jQuery functions to Node.js in a way that is NPM compatible.  To that end they are made available as underscore.js mixins. 
