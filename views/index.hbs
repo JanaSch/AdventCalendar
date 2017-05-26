@@ -1,74 +1,32 @@
-<h1>{{title}}</h1>
-
-<div class="col-sm-4">
-
-        <a href="index.hbs">
-            1
-        </a>
-</div>
-<div>
-    {{# each object}}
-        <a href="index.hbs">{{this.day}}</a>
-    {{/each}}
-</div>
+<br/>
 <div id="headTitle">
     <h1 class="text-center"><b>{{title}}</b></h1>
-    <h3 class="text-center">Test-Advents-Kalender</h3>
+    <h2 class="text-center">Im Jahr 2017</h2>
 </div>
 <br />
+<br />
 <div class="container text-center">
-    <h3>Und heute öffnen wir wieder ein Türchen...</h3>
+    <h4>Und heute öffnen wir wieder ein Türchen...</h4>
     <br />
     <div class="row">
-        <div class="col-sm-4">
-            <div class="thumbnail">
-                <a href="index.hbs">
-                    <img src="~/images/Learning.jpg" class="img-responsive" alt="Lights" style="width:50%">
-                    <div class="caption">1</div>
-                </a>
+        {{#each list}}
+            <div class="col-sm-2">
+                <div class="thumbnail">
+                    <a href="/doors/{{this}}">
+                        <img src="../../images/{{this}}.jpg" class="img-responsive" alt="Lights" style="width:50%">
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="thumbnail">
-                <a href="index.hbs">
-                    <img src="~/images/Learning.jpg" class="img-responsive" alt="Lights" style="width:50%">
-                    <div class="caption">2</div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="thumbnail">
-                <a href="index.hbs">
-                    <img src="~/images/Learning.jpg" class="img-responsive" alt="Lights" style="width:50%">
-                    <div class="caption">3</div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="thumbnail">
-                <a href="index.hbs">
-                    <!--<img src="~/images/Learning.jpg" class="img-responsive" alt="Lights" style="width:50%">-->
-                    <div class="caption">4</div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="thumbnail">
-                <a href="index.hbs">
-                    <!--<img src="~/images/Learning.jpg" class="img-responsive" alt="Lights" style="width:50%">-->
-                    <div class="caption">5</div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="thumbnail">
-                <a href="index.hbs">
-                    <!--<img src="~/images/Learning.jpg" class="img-responsive" alt="Lights" style="width:50%">-->
-                    <div class="caption">6</div>
-                </a>
-            </div>
-        </div>
+        {{/each}}
+
     </div>
-    <h4>Viel Spaß beim Lernen, Quizen und Mitmachen!</h4>
+    <br/>
+    <h4>Viel Spaß Rätseln in der Vorweihnachtszeit!</h4>
     <br />
+
+    <br>
+    <footer id="footer">
+        <p class="text-center"><a href="#">Zum Beginn der Seite</a></p>
+        <p class="text-center">&copy; 2017, Microservices mit Node.js (Hr. Buttig) </p>
+    </footer>
 </div>

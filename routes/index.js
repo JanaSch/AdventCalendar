@@ -12,13 +12,24 @@ var connection = mysql.createConnection({
 });
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Test' });
+    var L = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+    res.render('index', { title: 'Advents-Kalender' , list: L});
 });
 
-router.get("/1",function(req,res) {
-    db_connnect.select('object', 1, function (err, results, fields) {
-        var question = results[1].Question;
-        res.render('door', {Question: question});
+router.get('/doors/:doornumber', function(req,res) {
+    var doornumber = req.params.doornumber;
+    db_connnect.select('object', doornumber, function (err, results, fields) {
+        console.log(err);
+        if(err) {
+            console.log(err);
+            res.status(500).send("Fehler!")
+        } else {
+            console.log('The solution is: ', results);
+            var question = results[0].Question;
+            console.log(question);
+            //res.render('index', { title: 'Test' });
+            res.render('door', {doornumber}, results[0]);
+        }
     });
     /*connection.connect(function(err) {
         if (err) {
