@@ -3,15 +3,16 @@
  */
 
 var mysql = require('mysql');
+var pool  = mysql.createPool({
+    connectionLimit : 10,
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'aktest'
+});
 
 module.exports.select = function (table, id, cb) {
-    var connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : '',
-        database : 'aktest'
-    });
-    var select;
+    console.log("Da");
     switch(table) {
         case 'object':
             select = "Select * from aktest.object where ObjectID = "+id;
@@ -20,12 +21,9 @@ module.exports.select = function (table, id, cb) {
             select = "Select * from aktest.answer where ObjectID = "+id;
             break;
         default:
-            cb(true);
-            return;
+            console.log("WTF?");
             break;
-        connection.query(select, function (error, results, fields) {
-            connection.end();
-            cb(error, results, fields);
-        });
+
     }
+    pool.query(select,cb);
 };

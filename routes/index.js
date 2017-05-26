@@ -28,7 +28,7 @@ router.get('/doors/:doornumber', function(req,res) {
             var question = results[0].Question;
             console.log(question);
             //res.render('index', { title: 'Test' });
-            res.render('door', {doornumber}, results[0]);
+            res.render('door', results[0]);
         }
     });
     /*connection.connect(function(err) {
