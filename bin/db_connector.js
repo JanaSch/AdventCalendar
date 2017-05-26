@@ -8,17 +8,17 @@ var pool  = mysql.createPool({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'aktest'
+    database : 'Adventskalender'
 });
 
 module.exports.select = function (table, id, cb) {
     console.log("Da");
     switch(table) {
-        case 'object':
-            select = "Select * from aktest.object where ObjectID = "+id;
+        case 'Objekt':
+            select = "Select * from Adventskalender.Objekt where O_ID = "+id;
             break;
-        case 'answer':
-            select = "Select * from aktest.answer where ObjectID = "+id;
+        case 'Antwort':
+            select = "Select * from Adventskalender.Antwort where A_ID = "+id;
             break;
         default:
             console.log("WTF?");

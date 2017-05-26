@@ -4,12 +4,14 @@ var mysql = require('mysql');
 var assert = require('assert');
 var db_connnect = require('../bin/db_connector.js');
 
+/*
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'aktest'
+    database : 'Adventskalender'
 });
+*/
 
 router.get('/', function(req, res, next) {
     var L = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
@@ -18,14 +20,14 @@ router.get('/', function(req, res, next) {
 
 router.get('/doors/:doornumber', function(req,res) {
     var doornumber = req.params.doornumber;
-    db_connnect.select('object', doornumber, function (err, results, fields) {
+    db_connnect.select('Objekt', doornumber, function (err, results, fields) {
         console.log(err);
         if(err) {
             console.log(err);
             res.status(500).send("Fehler!")
         } else {
             console.log('The solution is: ', results);
-            var question = results[0].Question;
+            var question = results[0].Frage;
             console.log(question);
             //res.render('index', { title: 'Test' });
             res.render('door', results[0]);
@@ -90,26 +92,18 @@ router.get('/get-data', function(req, res, next) {
         });
     });
 });
-
+*/
 router.post('/insert', function(req, res, next) {
     var item = {
-        title: req.body.title,
-        content: req.body.content,
-        author: req.body.author
+        Name: req.body.name,
+        Antwort: req.body.Antwort
     };
-    mongo.connect(url, function(err, db){
-        assert.equal(null, err);
-        db.collection('collectionname').insertOne(item, function(err, db){
-            assert.equal(null, err);
-            console.log('Erfolgreich');
-            db.close();
-        });
-    });
+
     res.redirect('/');
 });
 
 
-
+/*
 router.post('/update', function(req, res, next) {
 
 });
