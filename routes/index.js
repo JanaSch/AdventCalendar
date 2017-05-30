@@ -35,47 +35,49 @@ router.get('/doors/:doornumber', function(req,res) {
             res.status(500).send("Fehler!")
         } else {
             console.log('The solution is: ', results);
-            var question = results[0].Frage;
-            console.log(question);
-            //res.render('index', { title: 'Test' });
-            res.render('door', results[0]);
+            res.render('door', {result: results[0]});
         }
     });
 });
 
-
-
-router.post('/doors/:doornumber', function(req, res, next) {
+router.get('/doors/:doornumber/comments', function(req,res) {
     var doornumber = req.params.doornumber;
-    var L = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
-    console.log('THERE');
-    var item = {
-        Autor: req.body.author,
-        Antwort: req.body.answer,
-        O_ID: doornumber
-    };
-    console.log(item);
-    console.log('FOO');
-    db_connnect.insert(item.Autor, item.Antwort, item.O_ID, function (err, results, fields) {
+    db_connnect.select('all', doornumber, function (err, results, fields) {
         console.log(err);
         if (err) {
             console.log(err);
             res.status(500).send("Fehler!")
         } else {
-            db_connnect.select('Antwort', doornumber, function (err, results, fields) {
+            console.log('The solution is: ', results);
+            res.render('door', {result: results[0], comments: results});
+        }
+    });
+});
+
+
+router.post('/doors/:doornumber', function(req, res, next) {
+    var doornumber = req.params.doornumber;
+    var item = {
+        Autor: req.body.author,
+        Kommentar: req.body.answer,
+        O_ID: doornumber
+    };
+    db_connnect.insert(item.Autor, item.Kommentar, item.O_ID, function (err, results) {
+        console.log(err);
+        if (err) {
+            console.log(err);
+            res.status(500).send("Fehler!")
+        } else {
+            db_connnect.select('Antwort', doornumber, function (err, results) {
                 console.log(err);
                 if (err) {
                     console.log(err);
                     res.status(500).send("Fehler!")
                 } else {
                     console.log('The solution is: ', results);
-                    var question = results[0];
-                    console.log(question);
-                    //res.render('index', { title: 'Test' });
-                    //res.render('door', results[0]);
                 }
                 //console.log('The insert-solution is: ', results);
-                res.render('/door/:doornumber');
+                res.redirect(req.path + '/comments');
             })
         }
     });
