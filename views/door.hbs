@@ -1,5 +1,5 @@
 
-
+<div class="panel panel-default">
     <div class="row">
         <div style="text-align: center">
             <h3>{{result.O_ID}}. Türchen</h3>
@@ -12,17 +12,19 @@
         <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
             <a href="/doors/{{result.O_ID}}/comments"></br></br>Bereits vorhandene Antworten</a>
         </div>
-
+            {{#if comments}}
             {{#each comments}}
-                {{#if Autor}}
+
                 <div class="row col-sm-offset-2 col-sm-10">
                     <label class="row col-sm-2 col-form-label"></br>{{Autor}}:</label>
                     <div class="col-sm-9"></br>"{{Kommentar}}"</div>
                 </div>
-                {{else}}
-                    <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">Leider gibt es zu dieser Frage noch keine Beiträge.<br/></div>
-                {{/if}}
+
             {{/each}}
+            {{else}}
+                <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">Leider gibt es zu dieser Frage noch keine Beiträge.<br/></div>
+
+            {{/if}}
 
 
         <div class="row col-sm-offset-2 col-sm-8">
@@ -61,7 +63,15 @@
         {{#if answer}}
             <div class="row col-sm-offset-2 col-sm-8"></br>{{answer}}</div>
         {{/if}}
+
+        <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
+            </br>
+            </br>
+            </br>
+            <p class="text-center"><a href="/">Zurück zur Startseite</a></p>
+        </div>
     </div>
+</div>
 
 
 
