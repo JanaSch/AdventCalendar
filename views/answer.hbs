@@ -1,0 +1,25 @@
+
+<div class="panel panel-default">
+    <div class="row">
+        <div style="text-align: center">
+            <h3>{{result.O_ID}}. Türchen</h3>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row col-sm-offset-2 col-sm-8"><h4>{{result.Titel}}</h4></div>
+        <div class="row col-sm-offset-2 col-sm-8">{{result.Frage}}</div>
+
+        <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
+            <a href="/doors/{{result.O_ID}}/answer"></br></br>Richtige Lösung</a></div>
+        {{#if answer}}
+            <div class="row col-sm-offset-2 col-sm-8"></br>{{answer}}</div>
+        {{/if}}
+
+        <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
+            </br>
+            </br>
+            </br>
+            <p class="text-center"><a href="/">Zurück zur Startseite</a></p>
+        </div>
+    </div>
+</div>

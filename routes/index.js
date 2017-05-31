@@ -93,7 +93,7 @@ router.get('/doors/:doornumber/answer', function(req,res) {
                 res.render('error', {title: 'Advents-Kalender', message: 'Etwas zu neugierig?', add_on1: 'Das Türchen darf noch nicht geöffnet werden.', add_on2: 'Versuchen Sie es in ein paar Tagen noch einmal!'});
             else {
                 answer = results[0].Antwort;
-                res.render('door', {title: 'Advents-Kalender', result: results[0], date: date, answer: answer});
+                res.render('answer', {title: 'Advents-Kalender', result: results[0], date: date, answer: answer});
             }
         }
     });
