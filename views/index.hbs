@@ -1,32 +1,57 @@
-<br/>
-<div id="headTitle">
-    <h1 class="text-center"><b>{{title}}</b></h1>
-    <h2 class="text-center">Im Jahr 2017</h2>
-</div>
-<br />
-<br />
+
 <div class="container text-center">
     <h4>Und heute öffnen wir wieder ein Türchen...</h4>
     <br />
+    </br>
     <div class="row">
-        {{#each list}}
+        {{#each l1}}
             <div class="col-sm-2">
-                <div class="thumbnail">
+                <div>
                     <a href="/doors/{{this}}">
                         <img src="../../images/{{this}}.jpg" class="img-responsive" alt="Lights" style="width:50%">
                     </a>
                 </div>
             </div>
         {{/each}}
-
     </div>
+    </br>
+    <div class="row">
+        {{#each l2}}
+            <div class="col-sm-2">
+                <div>
+                    <a href="/doors/{{this}}">
+                        <img src="../../images/{{this}}.jpg" class="img-responsive" alt="Lights" style="width:50%">
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    </br>
+    <div class="row">
+        {{#each l3}}
+            <div class="col-sm-2">
+                <div>
+                    <a href="/doors/{{this}}">
+                        <img src="../../images/{{this}}.jpg" class="img-responsive" alt="Lights" style="width:50%">
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    </br>
+    <div class="row">
+        {{#each l4}}
+            <div class="col-sm-2">
+                <div>
+                    <a href="/doors/{{this}}">
+                        <img src="../../images/{{this}}.jpg" class="img-responsive" alt="Lights" style="width:50%">
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    </br>
     <br/>
     <h4>Viel Spaß Rätseln in der Vorweihnachtszeit!</h4>
     <br />
-
-    <br>
-    <footer id="footer">
-        <p class="text-center"><a href="#">Zum Beginn der Seite</a></p>
-        <p class="text-center">&copy; 2017, Microservices mit Node.js (Hr. Buttig) </p>
-    </footer>
 </div>

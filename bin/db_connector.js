@@ -28,7 +28,6 @@ module.exports.select = function (table, id, cb) {
             break;
     }
     pool.query(select,cb);
-    console.log(select)
 };
 
 module.exports.insert = function (author, comment, o_id, cb) {

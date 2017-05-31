@@ -1,11 +1,5 @@
 
-<div id="headTitle">
-    <h1 class="text-center"><b>{{title}}</b></h1>
-    <h3 class="text-center">Im Jahr 2017</h3>
-</div>
-<br />
 
-<div class="panel panel-default">
     <div class="row">
         <div style="text-align: center">
             <h3>{{result.O_ID}}. Türchen</h3>
@@ -18,15 +12,21 @@
         <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
             <a href="/doors/{{result.O_ID}}/comments"></br></br>Bereits vorhandene Antworten</a>
         </div>
-        {{#each comments}}
-            <div class="row col-sm-offset-2 col-sm-10">
-                <label class="row col-sm-2 col-form-label"></br>{{Autor}}:</label>
-                <div class="col-sm-9"></br>"{{Kommentar}}"</div>
-            </div>
-        {{/each}}
+
+            {{#each comments}}
+                {{#if Autor}}
+                <div class="row col-sm-offset-2 col-sm-10">
+                    <label class="row col-sm-2 col-form-label"></br>{{Autor}}:</label>
+                    <div class="col-sm-9"></br>"{{Kommentar}}"</div>
+                </div>
+                {{else}}
+                    <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">Leider gibt es zu dieser Frage noch keine Beiträge.<br/></div>
+                {{/if}}
+            {{/each}}
+
 
         <div class="row col-sm-offset-2 col-sm-8">
-            <h5></br></br></br>Hier können Sie Ihre Lösungs-Vorschläge eingeben:</h5>
+            <h5></br></br></br>Hier können Sie Ihre Lösungs-Vorschläge oder Kommentare eingeben:</h5>
         </div>
         <div class="row col-sm-offset-2 col-sm-8">
             <form action="/doors/{{result.O_ID}}" method="post">
@@ -57,12 +57,13 @@
         </div>
 
         <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
-            <a href="/doors/{{result.O_ID}}"></br></br>Richtige Lösung</a></div>
-        <div class="row col-sm-offset-2 col-sm-8"></br>{{result.Antwort}}</div>
-
+            <a href="/doors/{{result.O_ID}}/answer"></br></br>Richtige Lösung</a></div>
+        {{#if answer}}
+            <div class="row col-sm-offset-2 col-sm-8"></br>{{answer}}</div>
+        {{/if}}
     </div>
 
-</div>
+
 
 <!--
 

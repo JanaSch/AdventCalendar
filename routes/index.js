@@ -23,11 +23,17 @@ router.get('/', function(req, res, next) {
         L[counter] = L[index];
         L[index] = temp;
     }
-    res.render('index', { title: 'Advents-Kalender' , list: L});
+    var L1 = [L[0],L[1],L[2],L[3],L[4],L[5]];
+    var L2 = [L[6],L[7],L[8],L[9],L[10],L[11]];
+    var L3 = [L[12],L[13],L[14],L[15],L[16],L[17]];
+    var L4 = [L[18],L[19],L[20],L[21],L[22],L[23]];
+    res.render('index', { title: 'Advents-Kalender' , l1: L1, l2: L2, l3: L3, l4: L4});
 });
 
 router.get('/doors/:doornumber', function(req,res) {
     var doornumber = req.params.doornumber;
+    var answer;
+    var date = new Date();
     db_connnect.select('Objekt', doornumber, function (err, results, fields) {
         console.log(err);
         if (err) {
@@ -35,7 +41,11 @@ router.get('/doors/:doornumber', function(req,res) {
             res.status(500).send("Fehler!")
         } else {
             console.log('The solution is: ', results);
-            res.render('door', {result: results[0]});
+            if(results[0].Datum > date)
+                res.render('error', {message: 'Etwas zu neugierig?', add_on1: 'Das Türchen darf noch nicht geöffnet werden.', add_on2: 'Versuchen Sie es in ein paar Tagen noch einmal!'});
+            else{
+                res.render('door', {title: 'Advents-Kalender', result: results[0], date: date, answer: answer});
+            }
         }
     });
 });
@@ -47,9 +57,34 @@ router.get('/doors/:doornumber/comments', function(req,res) {
         if (err) {
             console.log(err);
             res.status(500).send("Fehler!")
+        }
+        else {
+            console.log('The solution is: ', results);
+            res.render('door', {title: 'Advents-Kalender', result: results[0], comments: results});
+        }
+    });
+});
+
+
+router.get('/doors/:doornumber/answer', function(req,res) {
+    var doornumber = req.params.doornumber;
+    var answer;
+    var date = new Date();
+    db_connnect.select('Objekt', doornumber, function (err, results, fields) {
+        console.log(err);
+        if (err) {
+            console.log(err);
+            res.status(500).send("Fehler!")
         } else {
             console.log('The solution is: ', results);
-            res.render('door', {result: results[0], comments: results});
+            if(results[0].Datum == date)
+                res.render('error', {message: 'Schon eine Idee?', add_on1: 'Versuchen Sie erst selbst eine Lösung auf das Rätsel zu finden.', add_on2: 'Erst ab morgen gibt es hier die korrekte Antwort!'});
+            else if(results[0].Datum > date)
+                res.render('error', {message: 'Etwas zu neugierig?', add_on1: 'Das Türchen darf noch nicht geöffnet werden.', add_on2: 'Versuchen Sie es in ein paar Tagen noch einmal!'});
+            else {
+                answer = results[0].Antwort;
+                res.render('door', {title: 'Advents-Kalender', result: results[0], date: date, answer: answer});
+            }
         }
     });
 });
