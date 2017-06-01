@@ -41,6 +41,7 @@ router.get('/doors/:doornumber', function(req,res) {
             res.status(500).send("Fehler!")
         } else {
             console.log('The solution is: ', results);
+            console.log('date: ', results[0].Datum);
             if(results[0].Datum > date)
                 res.render('error', {title: 'Advents-Kalender', message: 'Etwas zu neugierig?', add_on1: 'Das Türchen darf noch nicht geöffnet werden.', add_on2: 'Versuchen Sie es in ein paar Tagen noch einmal!'});
             else{
@@ -87,13 +88,26 @@ router.get('/doors/:doornumber/answer', function(req,res) {
             res.status(500).send("Fehler!")
         } else {
             console.log('The solution is: ', results);
-            if(results[0].Datum == date)
-                res.render('error', {title: 'Advents-Kalender', message: 'Schon eine Idee?', add_on1: 'Versuchen Sie erst selbst eine Lösung auf das Rätsel zu finden.', add_on2: 'Erst ab morgen gibt es hier die korrekte Antwort!'});
-            else if(results[0].Datum > date)
-                res.render('error', {title: 'Advents-Kalender', message: 'Etwas zu neugierig?', add_on1: 'Das Türchen darf noch nicht geöffnet werden.', add_on2: 'Versuchen Sie es in ein paar Tagen noch einmal!'});
-            else {
+            console.log('door: ', results[0].Datum)
+            console.log('date: ', date)
+            console.log('new date: ', date.setDate(date.getDate()-1))
+            if(results[0].Datum < date){
                 answer = results[0].Antwort;
                 res.render('answer', {title: 'Advents-Kalender', result: results[0], date: date, answer: answer});
+            } else if(results[0].Datum > date.setDate(date.getDate()-1)) {
+                console.log('date: ', date)
+                res.render('error', {
+                    title: 'Advents-Kalender',
+                    message: 'Schon eine Idee?',
+                    add_on1: 'Versuchen Sie erst selbst eine Lösung auf das Rätsel zu finden.',
+                    add_on2: 'Erst ab morgen gibt es hier die korrekte Antwort!'});
+            } else {
+                res.render('error', {
+                    title: 'Advents-Kalender',
+                    message: 'Etwas zu neugierig?',
+                    add_on1: 'Das Türchen darf noch nicht geöffnet werden.',
+                    add_on2: 'Versuchen Sie es in ein paar Tagen noch einmal!'
+                });
             }
         }
     });
