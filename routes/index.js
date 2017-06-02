@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var assert = require('assert');
-var db_connnect = require('../bin/db_connector.js');
+var db_connnect = require('../repository/db_connector.js');
 
 /*
 var connection = mysql.createConnection({
@@ -100,7 +100,9 @@ router.get('/doors/:doornumber/answer', function(req,res) {
                     title: 'Advents-Kalender',
                     message: 'Schon eine Idee?',
                     add_on1: 'Versuchen Sie erst selbst eine Lösung auf das Rätsel zu finden.',
-                    add_on2: 'Erst ab morgen gibt es hier die korrekte Antwort!'});
+                    add_on2: 'Erst ab morgen gibt es hier die korrekte Antwort!',
+                    doornumber: doornumber,
+                    back: 'yes'});
             } else {
                 res.render('error', {
                     title: 'Advents-Kalender',

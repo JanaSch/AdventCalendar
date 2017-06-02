@@ -15,7 +15,7 @@ var pool  = mysql.createPool({
 module.exports.select = function (table, id, cb) {
     switch(table) {
         case 'Objekt':
-            select = "Select * from Adventskalender.Objekt where O_ID = "+id;
+            select = "Select * from Adventskalender.Objekt where O_ID = " +id;
             break;
         case 'Antwort':
             select = "Select * from Adventskalender.Antwort where O_ID = "+id;

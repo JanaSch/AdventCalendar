@@ -11,7 +11,9 @@
         <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">{{add_on2}}</div>
         <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
             </br>
-            <p class="text-center"><a href="/doors/{{doornumber}}">Zurück zur Frage des Tages</a></p>
+            {{#if back}}
+                <p class="text-center"><a href="/doors/{{doornumber}}">Zurück zur Frage des Tages</a></p>
+            {{/if}}
         </div>
     </div>
     <div class="row col-sm-offset-2 col-sm-8" style="text-align: center">
